@@ -1,59 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LR1_3kyrs_NOVIKOVA_BAI24.Model
 {
-
-    public class Role : INotifyPropertyChanged
+    /// <summary>
+    /// класс должность сотрудника
+    /// </summary>
+    public class Role
     {
-  
+        /// <summary>
+        /// код должности
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>
         /// наименование должности
         /// </summary>
-        private string nameRole;
+        public string NameRole { get; set; }
 
-        /// <summary>
-        /// наименование должности
-        /// </summary>
-        public string NameRole
+        public Role()
         {
-            get { return nameRole; }
-            set
-            {
-                nameRole = value;
-                OnPropertyChanged("NameRole");
-            }
-        }
-
-        public Role() { }
-
-        public Role(int id, string nameRole)
-        {
-            this.Id = id;
-            this.NameRole = nameRole;
+            this.Persons = new HashSet<Person>();
         }
 
         /// <summary>
-        /// Метод поверхностного копирования
+        /// коллекция Persons для связи с классом Person
         /// </summary>
-        /// <returns></returns>
-        public Role ShallowCopy()
-        {
-            return (Role)this.MemberwiseClone();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public virtual ICollection<Person> Persons { get; set; }
     }
 }
