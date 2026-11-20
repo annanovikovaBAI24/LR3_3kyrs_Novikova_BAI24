@@ -1,57 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using LR1_3kyrs_NOVIKOVA_BAI24;
 using LR1_3kyrs_NOVIKOVA_BAI24.Model;
-using LR1_3kyrs_NOVIKOVA_BAI24.ViewModel;
 
 namespace LR1_3kyrs_NOVIKOVA_BAI24.View
 {
     public partial class WindowNewEmployee : Window
     {
-        public WindowNewEmployee(RoleViewModel roleVM)
+        public WindowNewEmployee()
         {
             InitializeComponent();
 
-            CbRole.ItemsSource = roleVM.ListRole;// Устанавливаем источник данных для ComboBox
-
-            Loaded += (s, e) =>// когда окно загружено
+            using (var context = new CompanyEntities())
             {
-                PersonDpo p = DataContext as PersonDpo;
-                if (p == null) return;
-                foreach (Role r in CbRole.Items)
-                {
-                    if (r.NameRole == p.RoleName)
-                    {
-                        CbRole.SelectedItem = r;
-                        break;
-                    }
-                }
-            };
+                CbRole.ItemsSource = context.Roles.ToList();
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             tbBirthday.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
             clBirthday.GetBindingExpression(DatePicker.SelectedDateProperty)?.UpdateSource();
-
-            if (clBirthday.SelectedDate.HasValue)
-            {
-                PersonDpo p = DataContext as PersonDpo;
-                if (p != null)
-                {
-                    p.Birthday = clBirthday.SelectedDate.Value.ToString("dd.MM.yyyy");
-                }
-            }
 
             DialogResult = true;
         }
@@ -60,6 +31,7 @@ namespace LR1_3kyrs_NOVIKOVA_BAI24.View
         {
             DialogResult = false;
         }
+
         private void tbBirthday_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)//видимость календаря
         {
             if (tbBirthday.Visibility == Visibility.Hidden)
