@@ -1,9 +1,5 @@
-﻿using System.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Windows;
 using LR1_3kyrs_NOVIKOVA_BAI24.Helper;
 using LR1_3kyrs_NOVIKOVA_BAI24.View;
 
@@ -17,7 +13,7 @@ namespace LR1_3kyrs_NOVIKOVA_BAI24.ViewModel
         public MainWindowViewModel()
         {
             RoleVM = new RoleViewModel();
-            PersonVM = new PersonViewModel(RoleVM); // передаём RoleVM
+            PersonVM = new PersonViewModel();
         }
 
         private RelayCommand openEmployee;
