@@ -18,9 +18,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Код:" Margin="10"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="10"
-                 Text="{Binding Id}" IsEnabled="False"/>
+       
 
         <Label Grid.Row="1" Grid.Column="0" Content="Должность:" Margin="10"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="10"
