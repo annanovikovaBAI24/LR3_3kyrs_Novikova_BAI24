@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LR1_3kyrs_NOVIKOVA_BAI24.View"
         mc:Ignorable="d"
- Title="Сотрудники" Height="300" Width="500">
+        Title="Сотрудники" Height="300" Width="500">
+
     <StackPanel>
         <StackPanel Orientation="Horizontal" Background="#FFE4E9E0">
             <Button Content="Добавить" Height="25" Margin="10,10,5,10"
@@ -15,21 +16,21 @@
             <Button Content="Удалить" Height="25" Margin="10,10,5,10"
                     Command="{Binding DeletePerson}"/>
         </StackPanel>
-        <ListView ItemsSource="{Binding ListPersonDpo}"
-                  SelectedItem="{Binding SelectedPersonDpo}">
+
+        <ListView ItemsSource="{Binding ListPerson}"
+                  SelectedItem="{Binding SelectedPerson}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="Код" Width="50"
-                                        DisplayMemberBinding="{Binding Id}"/>
+                     
                         <GridViewColumn Header="Фамилия"
                                         DisplayMemberBinding="{Binding LastName}"/>
                         <GridViewColumn Header="Имя"
                                         DisplayMemberBinding="{Binding FirstName}"/>
                         <GridViewColumn Header="Должность" Width="100"
-                                        DisplayMemberBinding="{Binding RoleName}"/>
+                                        DisplayMemberBinding="{Binding Role.NameRole}"/>
                         <GridViewColumn Header="Дата рождения"
-                                        DisplayMemberBinding="{Binding Birthday}"/>
+                                        DisplayMemberBinding="{Binding Birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
